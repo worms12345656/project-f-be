@@ -1,0 +1,39 @@
+[
+  {
+    "name": "Characteristic of OOP",
+    "category": "backEnd",
+    "hint": 
+      "Polymorphism\nAbtraction\nEncapsulation\nInheritance",
+      
+    "level": "basic"
+  },
+  {
+    "name": "What is Polymorphism In OOP",
+    "category": "backEnd",
+    "hint": 
+      "Object can take multiple form",
+      
+    "level": "basic"
+  },
+  {
+    "name": "What is javascript",
+    "category": "frontEnd",
+    "hint": 
+      "is a script or porgaming language\nhelp web page handle difficult logic",
+    "level": "basic"
+  },
+{
+    "name": "let vs const",
+    "category": "frontEnd",
+    "hint": 
+      "let can be updated while const cannot\nboth cannot re-declared",
+    "level": "basic"
+  },
+{
+    "name": "What is MongoDB",
+    "category": "database",
+    "hint": 
+      "opensource non-sql database\nstored in JSON",
+    "level": "basic"
+  }
+]
