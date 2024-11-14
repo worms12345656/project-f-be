@@ -1,10 +1,5 @@
 const mongoose = require("../../common/database")();
 const questionResultSchema = new mongoose.Schema({
-  resultId: {
-    type: mongoose.Types.ObjectId,
-    ref: "Result",
-    require: true,
-  },
   questionId: {
     type: mongoose.Types.ObjectId,
     ref: "Question",
@@ -19,9 +14,12 @@ const questionResultSchema = new mongoose.Schema({
     require: true,
   },
 });
-const QuestionResultModel = mongoose.model(
-  "QuestionResults",
+// const QuestionResultModel = mongoose.model(
+//   "QuestionResults",
+//   questionResultSchema,
+//   "questionResults"
+// );
+module.exports = {
+  // QuestionResultModel,
   questionResultSchema,
-  "questionResults"
-);
-module.exports = QuestionResultModel;
+};

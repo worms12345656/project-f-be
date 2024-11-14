@@ -1,4 +1,21 @@
 const mongoose = require("../../common/database")();
+
+const questionResultSchema = new mongoose.Schema({
+  questionId: {
+    type: mongoose.Types.ObjectId,
+    ref: "Question",
+    require: true,
+  },
+  rating: {
+    type: Number,
+    require: true,
+  },
+  summary: {
+    type: String,
+    require: true,
+  },
+});
+
 const resultSchema = new mongoose.Schema({
   candidateName: {
     type: String,
@@ -10,6 +27,10 @@ const resultSchema = new mongoose.Schema({
   },
   note: {
     type: String,
+    require: true,
+  },
+  resultList: {
+    type: [questionResultSchema],
     require: true,
   },
 });
