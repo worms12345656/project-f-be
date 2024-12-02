@@ -2,28 +2,30 @@ const QuestionResultModel = require("../../models/question_results");
 const ResultModel = require("../../models/result");
 
 exports.index = async (req, res) => {
-  try {
-    console.log("get question");
-    const data = await ResultModel.find();
-    if (data.length === 0) {
-      return res.status(404).json(ERR.NOT_FOUND);
-    }
-    return res.status(200).json({
-      status: "200",
-      data: [
-        ...data.map((item) => ({
-          id: item.id,
-          name: item.name,
-          category: item.category,
-          level: item.level,
-        })),
-      ],
-    });
-  } catch (e) {
-    return res.status("500").json({
-      message: e,
-    });
+  // try {
+  console.log("get question");
+  const data = await ResultModel.find();
+  if (data.length === 0) {
+    return res.status(404).json(ERR.NOT_FOUND);
   }
+  return res.status(200).json({
+    status: "200",
+    data: [
+      ...data.map((item) => ({
+        id: item.id,
+        candidateName: item.candidateName,
+        point:
+          item.resultList.reduce((total, item) => (item.rating += total), 0) /
+          item.resultList.length,
+        result: item.isPass ? "pass" : "fail",
+      })),
+    ],
+  });
+  // } catch (e) {
+  //   return res.status("500").json({
+  //     message: e,
+  //   });
+  // }
 };
 
 exports.save = async (req, res) => {
