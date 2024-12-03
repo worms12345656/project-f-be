@@ -6,6 +6,7 @@ const ResultController = require("../apps/controllers/apis/result");
 
 router.get("/questions", QuestionController.index);
 router.get("/questions/:id", QuestionController.show);
+router.post("/questions/add", QuestionController.add);
 router.post("/questions/:id/update", QuestionController.update);
 router.post("/questions/:id/delete", QuestionController.remove);
 router.post("/questions/:id/copy", QuestionController.copy);

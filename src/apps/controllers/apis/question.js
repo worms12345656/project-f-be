@@ -11,7 +11,6 @@ exports.index = async (req, res) => {
       return res.status(404).json(ERR.NOT_FOUND);
     }
     return res.status(200).json({
-      status: "200",
       data: [
         ...data.map((item) => ({
           id: item.id,
@@ -38,7 +37,6 @@ exports.show = async (req, res) => {
       });
     }
     return res.status(200).json({
-      status: "200",
       data,
     });
   } catch (e) {
@@ -71,7 +69,26 @@ exports.update = async (req, res) => {
       });
     }
     return res.status(201).json({
-      status: "201",
+      data,
+    });
+  } catch (e) {
+    return res.status("500").json({
+      message: e,
+    });
+  }
+};
+
+exports.add = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const newQuestion = new QuestionModel({
+      category: req.body.category,
+      hint: req.body.hint,
+      level: req.body.level,
+      name: req.body.name,
+    });
+    const data = await newQuestion.save();
+    return res.status(201).json({
       data,
     });
   } catch (e) {
