@@ -1,4 +1,3 @@
-const QuestionResultModel = require("../../models/question_results");
 const ResultModel = require("../../models/result");
 
 exports.index = async (req, res) => {

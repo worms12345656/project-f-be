@@ -18,4 +18,7 @@ const questionSchema = new mongoose.Schema({
   },
 });
 const QuestionModel = mongoose.model("Question", questionSchema, "questions");
-module.exports = QuestionModel;
+module.exports = {
+  QuestionModel,
+  questionSchema,
+};

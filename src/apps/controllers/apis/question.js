@@ -1,7 +1,7 @@
 const { Long } = require("mongodb");
 const { ERR } = require("../../lib/error");
 const handleException = require("../../lib/exception");
-const QuestionModel = require("../../models/question");
+const { QuestionModel } = require("../../models/question");
 
 exports.index = async (req, res) => {
   try {
