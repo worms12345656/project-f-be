@@ -1,6 +1,7 @@
 const mongoose = require("../../common/database")();
 
 const questionResultSchema = new mongoose.Schema({
+  _id: false,
   questionId: {
     type: mongoose.Types.ObjectId,
     ref: "Question",

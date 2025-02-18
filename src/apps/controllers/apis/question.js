@@ -5,7 +5,6 @@ const { QuestionModel } = require("../../models/question");
 
 exports.index = async (req, res) => {
   try {
-    console.log("get question");
     const data = await QuestionModel.find();
     if (data.length === 0) {
       return res.status(404).json(ERR.NOT_FOUND);
@@ -70,6 +69,7 @@ exports.update = async (req, res) => {
     }
     return res.status(201).json({
       data,
+      status: 201,
     });
   } catch (e) {
     return res.status("500").json({
@@ -79,7 +79,6 @@ exports.update = async (req, res) => {
 };
 
 exports.add = async (req, res) => {
-  const id = req.params.id;
   try {
     const newQuestion = new QuestionModel({
       category: req.body.category,
@@ -90,6 +89,7 @@ exports.add = async (req, res) => {
     const data = await newQuestion.save();
     return res.status(201).json({
       data,
+      status: 201,
     });
   } catch (e) {
     return res.status("500").json({

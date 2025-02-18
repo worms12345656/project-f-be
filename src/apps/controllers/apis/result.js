@@ -32,29 +32,37 @@ exports.save = async (req, res) => {
     candidateName: req.body.candidateName,
     note: req.body.note,
     isPass: req.body.isPass,
-    categories: [...req.body.category],
+    resultList: [...req.body.questionList],
   };
 
-  try {
-    const resultList = [];
+  console.log("input", input);
 
-    input.categories.forEach((category) => {
-      category.forEach(async (item) => {
-        console.log(item);
-        resultList.push({
-          questionId: item.questionId,
-          rating: item.rating,
-          summary: item.summary,
-        });
-      });
-    });
+  try {
+    // input.categories.forEach((category) => {
+    //   category.forEach(async (item) => {
+    //     console.log(item);
+    //     resultList.push({
+    //       questionId: item.questionId,
+    //       rating: item.rating,
+    //       summary: item.summary,
+    //     });
+    //   });
+    // });
 
     const result = await ResultModel.create({
       candidateName: input.candidateName,
       note: input.note,
       isPass: input.isPass,
-      resultList,
+      resultList: input.resultList,
     });
+
+    console.log(result.errors);
+
+    if (result.errors) {
+      res.status(500).json({
+        message: result.errors,
+      });
+    }
 
     return res.status(200).json("OK");
   } catch (e) {
@@ -82,40 +90,24 @@ exports.save = async (req, res) => {
 };
 
 exports.get = async (req, res) => {
-  const input = {
-    candidateName: req.body.candidateName,
-    note: req.body.note,
-    isPass: req.body.isPass,
-    categories: [...req.body.category],
-  };
-
+  const id = req.params.id;
   try {
-    const resultList = [];
-
-    input.categories.forEach((category) => {
-      category.forEach(async (item) => {
-        console.log(item);
-        resultList.push({
-          questionId: item.questionId,
-          rating: item.rating,
-          summary: item.summary,
-        });
+    const data = await ResultModel.findById(id);
+    if (!data) {
+      return res.status(400).json({
+        message: "Question Id don't exist!",
       });
+    }
+    return res.status(200).json({
+      status: "200",
+      data,
     });
-
-    const result = await ResultModel.create({
-      candidateName: input.candidateName,
-      note: input.note,
-      isPass: input.isPass,
-      resultList,
-    });
-
-    return res.status(200).json("OK");
   } catch (e) {
-    res.status(500).json({
+    return res.status("500").json({
       message: e,
     });
   }
+
   //   console.log("result", result);
   //   try {
   //     const data = await QuestionModel.findById(id);
