@@ -12,6 +12,8 @@ router.post("/questions/:id/update", QuestionController.update);
 router.post("/questions/:id/delete", QuestionController.remove);
 router.post("/questions/:id/copy", QuestionController.copy);
 router.get("/questions-list", QuestionListController.index);
+router.get("/questions-list/unchosen", QuestionListController.unchosen);
+router.post("/questions-list/onchoose", QuestionListController.onchoose);
 router.get("/interview", QuestionListController.interview);
 router.post("/signin", AuthController.signin);
 router.post("/refresh", AuthController.refresh);
